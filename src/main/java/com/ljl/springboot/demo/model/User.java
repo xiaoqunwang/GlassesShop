@@ -5,26 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue
     private int id;
     private String name;
     private String password;
     private String phone;
     private String email;
     private String openid;
+    private String createTime;
+    private String modifiedTime;
 
     @Override
     public String toString() {
@@ -35,6 +30,8 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", openid='" + openid + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", modifiedTime='" + modifiedTime + '\'' +
                 '}';
     }
 }

@@ -1,26 +1,29 @@
 package com.ljl.springboot.demo.provider.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ljl.springboot.demo.util.ResponseUtil;
-import org.springframework.stereotype.Controller;
+
+import com.ljl.springboot.demo.common.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/test")
+@RestController
+@RequestMapping(value = "/test")
 public class TestController {
 
 
+
+
     @RequestMapping(value = "/sayhello.json", method = RequestMethod.GET)
-    @ResponseBody
-    public Object getMovieList(
+
+    public Object sayhello(
             @RequestParam(value = "name") String name) {
         try {
-            return ResponseUtil.success("success","hello"+name );
+            return ApiResponse.buildSuccess("hello"+name,"success");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseUtil.failed(e.getMessage());
+            return ApiResponse.buildFailure(e.getMessage());
         }
     }
+
+
 
 
 }

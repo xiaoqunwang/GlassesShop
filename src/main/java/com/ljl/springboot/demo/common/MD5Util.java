@@ -1,4 +1,4 @@
-package com.ljl.springboot.demo.util;
+package com.ljl.springboot.demo.common;
 
 import java.io.File;
 import java.io.FileInputStream;
