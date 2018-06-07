@@ -18,5 +18,7 @@
         <setting name="defaultExecutorType" value="REUSE"/>
         <!-- null值数据库映射 -->
         <setting name="jdbcTypeForNull" value="NULL"/>
+        <!-- 设置日志实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 </configuration>  
