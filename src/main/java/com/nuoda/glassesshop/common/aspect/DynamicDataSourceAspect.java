@@ -19,17 +19,17 @@ public class DynamicDataSourceAspect {
 
     private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.nuoda.glassesshop.dao..*(..)) " +
-            "&& @annotation(com.nuoda.glassesshop.common.annotation.DataSourceTypeAnno)")
-    public void dataSourcePointcut() {
-    }
+//    @Pointcut("@annotation(com.nuoda.glassesshop.common.annotation.DataSourceTypeAnno)")
+//    public void dataSourcePointcut() {
+//    }
 
-    @Around("dataSourcePointcut()")
-    public Object doAround(ProceedingJoinPoint pjp) {
-        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
-        Method method = methodSignature.getMethod();
-        DataSourceTypeAnno typeAnno = method.getAnnotation(DataSourceTypeAnno.class);
-        DataSourceEnum sourceEnum = typeAnno.value();
+    @Around("@annotation(dataSourceTypeAnno)")
+    public Object doAround(ProceedingJoinPoint pjp,DataSourceTypeAnno dataSourceTypeAnno) {
+//        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+//        Method method = methodSignature.getMethod();
+//        DataSourceTypeAnno typeAnno = method.getAnnotation(DataSourceTypeAnno.class);
+        DataSourceEnum sourceEnum = dataSourceTypeAnno.value();
+
 
         if (sourceEnum == DataSourceEnum.master) {
             DataSourceContextHolder.setDataSourceType(DataSourceEnum.master);
@@ -41,13 +41,36 @@ public class DynamicDataSourceAspect {
 
         Object result = null;
         try {
+            System.out.println("动态数据源"+sourceEnum.toString());
             result = pjp.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         } finally {
+            //最后切回默认数据源master
             DataSourceContextHolder.resetDataSourceType();
         }
 
         return result;
     }
+
+    @Around("execution(* com.nuoda.glassesshop.provider.controller.TestController.*(..))")
+    public Object doAround(ProceedingJoinPoint pjp) {
+//        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+//        Method method = methodSignature.getMethod();
+//        DataSourceTypeAnno typeAnno = method.getAnnotation(DataSourceTypeAnno.class);
+
+        Object result = null;
+        try {
+            logger.info("测试Aspect");
+            result = pjp.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+
+            DataSourceContextHolder.resetDataSourceType();
+        }
+
+        return result;
+    }
+
 }

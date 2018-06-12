@@ -1,14 +1,13 @@
 package com.nuoda.glassesshop.dao;
 
-import com.nuoda.glassesshop.common.annotation.DataSourceTypeAnno;
-import com.nuoda.glassesshop.eumn.DataSourceEnum;
+
+
 import com.nuoda.glassesshop.model.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-@DataSourceTypeAnno(DataSourceEnum.master)
 public interface UserDao {
 
 

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 
 @Retention(RetentionPolicy.RUNTIME) // 在运行时可见
-@Target({ElementType.METHOD,ElementType.TYPE}) // 注解可以用在方法上
+@Target({ElementType.METHOD}) // 注解可以用在方法上
 public @interface DataSourceTypeAnno {
     DataSourceEnum value() default DataSourceEnum.master;
 }

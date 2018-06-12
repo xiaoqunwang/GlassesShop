@@ -13,12 +13,16 @@ public class Order {
     int id;
     String userId;
     double totalPrice;
+    int quantities;
     int orderStatus;
     int payStatus;
     String receiveName;
     String receivePhone;
     String receiveAddress;
     String detail;
+    String orderTime;
+    String payTime;
+    String channel;
     String ctime;
     String utime;
 
@@ -26,16 +30,25 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", userId='" + userId + '\'' +
                 ", totalPrice=" + totalPrice +
+                ", quantities=" + quantities +
                 ", orderStatus=" + orderStatus +
                 ", payStatus=" + payStatus +
-                ", receiveName=" + receiveName +
-                ", receivePhone=" + receivePhone +
-                ", receiveAddress=" + receiveAddress +
-                ", detail=" + detail +
-                ", ctime=" + ctime +
-                ", utime=" + utime +
+                ", receiveName='" + receiveName + '\'' +
+                ", receivePhone='" + receivePhone + '\'' +
+                ", receiveAddress='" + receiveAddress + '\'' +
+                ", detail='" + detail + '\'' +
+                ", orderTime='" + orderTime + '\'' +
+                ", payTime='" + payTime + '\'' +
+                ", channel='" + channel + '\'' +
+                ", ctime='" + ctime + '\'' +
+                ", utime='" + utime + '\'' +
                 '}';
     }
 }
+
+
+
+
+

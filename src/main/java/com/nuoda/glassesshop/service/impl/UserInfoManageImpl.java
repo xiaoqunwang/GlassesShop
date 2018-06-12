@@ -1,5 +1,7 @@
 package com.nuoda.glassesshop.service.impl;
 
+import com.nuoda.glassesshop.common.annotation.DataSourceTypeAnno;
+import com.nuoda.glassesshop.eumn.DataSourceEnum;
 import com.nuoda.glassesshop.service.IUserInfoManage;
 import com.nuoda.glassesshop.dao.UserDao;
 import com.nuoda.glassesshop.model.User;
@@ -18,11 +20,14 @@ public class UserInfoManageImpl implements IUserInfoManage {
     @Autowired
     private UserDao userDao;
 
+
     @Override
+    @DataSourceTypeAnno(DataSourceEnum.master)
     public User getUserRegestInfo(String phone) {
         User user = null;
         try{
             user=userDao.getUserRegisterInfoByPhone(phone);
+            logger.info(user.toString());
         }catch (Exception e){
             logger.error(e.getMessage());
         }
