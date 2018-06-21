@@ -8,6 +8,8 @@ import com.nuoda.glassesshop.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class OrderServiec implements IOrderService {
@@ -22,4 +24,28 @@ public class OrderServiec implements IOrderService {
             return neworder;
 
     }
+
+    @Override
+    @DataSourceTypeAnno(DataSourceEnum.slaver)
+    public List<Order> getOrderByUser(String userid) {
+        List<Order> orders=orderDao.getOrderByUserId(userid);
+        return orders;
+    }
+
+    @Override
+    @DataSourceTypeAnno(DataSourceEnum.slaver)
+    public Order getOrderById(long orderid) {
+        Order order=orderDao.getOrderById(orderid);
+        return order;
+    }
+
+    @Override
+    @DataSourceTypeAnno(DataSourceEnum.slaver)
+    public Order updateOrder(Order order) {
+        orderDao.updateOrder(order);
+        Order order1=orderDao.getOrderById(order.getId());
+        return order1;
+    }
+
+
 }

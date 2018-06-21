@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    int id;
+    long id;
     String userId;
     double totalPrice;
     int quantities;
@@ -23,6 +23,7 @@ public class Order {
     String orderTime;
     String payTime;
     String channel;
+    String transportNum;
     String ctime;
     String utime;
 
@@ -42,6 +43,7 @@ public class Order {
                 ", orderTime='" + orderTime + '\'' +
                 ", payTime='" + payTime + '\'' +
                 ", channel='" + channel + '\'' +
+                ", transportNum='" + transportNum + '\'' +
                 ", ctime='" + ctime + '\'' +
                 ", utime='" + utime + '\'' +
                 '}';

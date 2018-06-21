@@ -23,7 +23,7 @@ public interface UserDao {
             "#{name},#{password},#{phone},#{email},#{openid}"+
             " )")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    public int newUser(User newuser);
+     int newUser(User newuser);
 
 
     @Select("SELECT id,name,password,phone,email,openid,create_time,modified_time from user where phone=#{phone} limit 1")
@@ -36,7 +36,9 @@ public interface UserDao {
 //            @Result(column = "create_time", property = "createTime"),
 //            @Result(column = "modified_time", property = "modifiedTime")
 //    })
-    public User getUserRegisterInfoByPhone(String phone);
+     User getUserRegisterInfoByPhone(String phone);
+
+
 
 
 
